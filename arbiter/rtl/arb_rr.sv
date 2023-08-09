@@ -34,16 +34,16 @@ assign vld_mask = v_vld & prio_reg;
 
 // mask channel
 assign mask_nxt_vld[0] = 1'b0; 
-assign mask_nxt_vld[WIDTH-1:1] = mask_nxt_vld[WIDTH-2:0] & vld_mask[WIDTH-2:0];
+assign mask_nxt_vld[WIDTH-1:1] = mask_nxt_vld[WIDTH-2:0] | vld_mask[WIDTH-2:0];
 assign mask_grant = (~mask_nxt_vld) & vld_mask;
 
 // unmask channel
 assign unmask_nxt_vld[0] = 1'b0;
-assign unmask_nxt_vld[WIDTH-1:1] = unmask_nxt_vld[WIDTH-2:0] &  v_vld[WIDTH-2:0];
+assign unmask_nxt_vld[WIDTH-1:1] = unmask_nxt_vld[WIDTH-2:0] |  v_vld[WIDTH-2:0];
 assign unmask_grant = (~unmask_nxt_vld) & v_vld;
 
 // merge two channel to v_grant
-assign unmask_grant_no_mask = {WIDTH{|vld_mask}} & unmask_grant;
+assign unmask_grant_no_mask = {WIDTH{~(|vld_mask)}} & unmask_grant;
 assign v_grant = unmask_grant_no_mask | mask_grant;
 
 
