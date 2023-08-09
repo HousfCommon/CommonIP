@@ -8,12 +8,12 @@ logic [WIDTH-1:0] v_priority;
 
 
 initial begin
-    v_vld = {WIDTH{1'b1}};
-    v_priority = {{(WIDTH-1){1'b0}}, 1'b1};
+    v_vld <= {WIDTH{1'b1}};
+    v_priority <= {{(WIDTH-1){1'b0}}, 1'b1};
     #10
-    v_vld = {$random}%16;
+    v_vld <= {$random}%16;
     #10
-    v_vld = {$random}%16;
+    v_vld <= {$random}%16;
     #100
     $finish;
 end

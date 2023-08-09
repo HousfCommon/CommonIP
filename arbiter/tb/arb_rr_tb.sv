@@ -12,18 +12,18 @@ initial begin
 end 
 
 initial begin
-    v_vld = {WIDTH{1'b1}};
-    rst_n = 0;
+    v_vld <= {WIDTH{1'b1}};
+    rst_n <= 0;
     #10
-    rst_n = 1;
+    rst_n <= 1;
     // #10
     // v_vld = {$random}%16;
     // #10
     // v_vld = {$random}%16;
     #100
-    v_vld = {$random}%16;
+    v_vld <= {$random}%16;
     #10
-    v_vld = {$random}%16;
+    v_vld <= {$random}%16;
     #100
     $finish;
 end

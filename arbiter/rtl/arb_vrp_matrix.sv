@@ -23,7 +23,7 @@ logic [PLD_WIDTH-1:0]   select_pld;
 genvar i;
 generate
     for(i=0;i<WIDTH;i=i+1) begin: select_onehot_
-        assign select_onehot[i] =  (|(~v_vld_s|vv_matrix[i])) && (rdy_m && v_vld_s[i]); 
+        assign select_onehot[i] =  (~|(v_vld_s&vv_matrix[i])) && (rdy_m && v_vld_s[i]); 
     end 
 endgenerate
 

@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module arb_rr_tb;
+module arb_matrix_tb;
 
 parameter WIDTH = 4;
 logic clk, rst_n;
@@ -16,10 +16,6 @@ initial begin
     rst_n = 0;
     #10
     rst_n = 1;
-    // #10
-    // v_vld = {$random}%16;
-    // #10
-    // v_vld = {$random}%16;
     #100
     v_vld = {$random}%16;
     #10
@@ -28,12 +24,29 @@ initial begin
     $finish;
 end
 
+logic               alloc_en;
+logic [WIDTH-1:0]   v_alloc;
+logic [WIDTH-1:0]   vv_matrix [WIDTH-1:0];
 
-arb_rr #(
+assign alloc_en = |v_grant;
+assign v_alloc  = v_grant;
+
+age_matrix #(
+    .WIDTH(WIDTH)
+) u_matrix (
+    .clk(clk),
+    .rst_n(rst_n),
+    .alloc_en(alloc_en),
+    .v_alloc(v_alloc),
+    .vv_matrix(vv_matrix)
+);
+
+arb_matrix #(
     .WIDTH(WIDTH)
 ) u_arb (
     .clk(clk),
     .rst_n(rst_n),
+    .vv_matrix(vv_matrix),
     .v_vld(v_vld),
     .v_grant(v_grant)
 );
@@ -41,6 +54,8 @@ arb_rr #(
 initial begin 
     $fsdbDumpfile("tb_top.fsdb");
     $fsdbDumpvars(0);
+    // $fsdbDumpMem(0);
+    $fsdbDumpMDA();
 end
 
 

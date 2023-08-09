@@ -1,5 +1,6 @@
 // /home/liuyunqi/huangtao/common_ip/CommonIP/arbiter/tb/arb_fp_tb.sv
-/home/liuyunqi/huangtao/common_ip/CommonIP/arbiter/tb/arb_rr_tb.sv
+// /home/liuyunqi/huangtao/common_ip/CommonIP/arbiter/tb/arb_rr_tb.sv
+/home/liuyunqi/huangtao/common_ip/CommonIP/arbiter/tb/arb_matrix_tb.sv
 
 
 /home/liuyunqi/huangtao/common_ip/CommonIP/arbiter/rtl/arb_fp.sv
