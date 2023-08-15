@@ -1,4 +1,4 @@
-FILELIST  = ../vc/my_design.f
+FILELIST  = ../vc/tb_design.f
 FSDB_FILE = tb_top.fsdb
 
 

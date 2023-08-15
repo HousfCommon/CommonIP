@@ -44,8 +44,6 @@ age_matrix #(
 arb_matrix #(
     .WIDTH(WIDTH)
 ) u_arb (
-    .clk(clk),
-    .rst_n(rst_n),
     .vv_matrix(vv_matrix),
     .v_vld(v_vld),
     .v_grant(v_grant)
